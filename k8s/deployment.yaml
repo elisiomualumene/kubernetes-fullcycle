@@ -16,4 +16,4 @@ spec:
     spec:
       containers:
         - name: goserver
-          image: "elisiomualumene/goserver:v2"
+          image: "elisiomualumene/goserver:v3"
