@@ -5,7 +5,7 @@ metadata:
   labels:
     app: goserver
 spec:
-  replicas: 10
+  replicas: 1
   selector:
     matchLabels:
       app: goserver
@@ -16,4 +16,18 @@ spec:
     spec:
       containers:
         - name: goserver
-          image: "elisiomualumene/goserver:v3"
+          image: "elisiomualumene/goserver:v7"
+          envFrom:
+            - configMapRef:
+                name: goserver-env
+          volumeMounts:
+            - mountPath: "/go/myfamily"
+              name: config
+              readOnly: true
+      volumes:
+        - name: config
+          configMap:
+            name: configmap-family
+            items:
+              - key: members
+                path: "family.txt"
